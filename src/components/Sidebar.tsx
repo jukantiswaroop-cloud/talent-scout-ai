@@ -33,26 +33,29 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
       </div>
 
       <nav className="flex-1 px-4 space-y-2 mt-8">
-        {navItems.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => setActiveTab(item.id)}
-            className={`w-full flex items-center gap-4 px-6 py-4 transition-all duration-300 group relative ${
-              activeTab === item.id 
-                ? 'text-white' 
-                : 'text-white/40 hover:text-white'
-            }`}
-          >
-            {activeTab === item.id && (
-              <motion.div 
-                layoutId="active-nav"
-                className="absolute left-0 w-1 h-6 bg-brand-primary"
-              />
-            )}
-            <item.icon size={18} className={activeTab === item.id ? 'text-brand-primary' : 'opacity-40 group-hover:opacity-100'} />
-            <span className="label-caps">{item.label}</span>
-          </button>
-        ))}
+        <div className="space-y-1 mb-8">
+          <p className="label-caps opacity-20 text-[8px] px-6 mb-4">Core Protocols</p>
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(item.id)}
+              className={`w-full flex items-center gap-4 px-6 py-4 transition-all duration-300 group relative ${
+                activeTab === item.id 
+                  ? 'text-white' 
+                  : 'text-white/40 hover:text-white'
+              }`}
+            >
+              {activeTab === item.id && (
+                <motion.div 
+                  layoutId="active-nav"
+                  className="absolute left-0 w-1 h-6 bg-brand-primary"
+                />
+              )}
+              <item.icon size={18} className={activeTab === item.id ? 'text-brand-primary' : 'opacity-40 group-hover:opacity-100'} />
+              <span className="label-caps">{item.label}</span>
+            </button>
+          ))}
+        </div>
       </nav>
 
       <div className="p-8 border-t border-white/10 space-y-6">

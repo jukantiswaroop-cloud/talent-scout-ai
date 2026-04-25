@@ -37,6 +37,10 @@
 Watch the full project walkthrough and logic demonstration:
 **[View Demo Video on Google Drive](https://drive.google.com/file/d/14OSyeI5Pop4lL4pXDM-gq5rMCxgfs9hu/view?usp=sharing)**
 
+## 🌐 Project site URL
+Access the live application here:
+**[TalentScout AI - Live Application](https://ai.studio/apps/7c709731-e015-4569-8677-5cd4a4acb4da?fullscreenApplet=true)**
+
 ## 🛠️ Setup Instructions
 
 1. **Clone the repository.**

@@ -23,16 +23,19 @@ import Sidebar from './components/Sidebar';
 import JDInput from './components/JDInput';
 import CandidateList from './components/CandidateList';
 import CandidateDetails from './components/CandidateDetails';
+import Insights from './components/Insights';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'scout' | 'shortlist' | 'analytics' | 'architecture'>('scout');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [analysis, setAnalysis] = useState<JobDescriptionAnalysis | null>(null);
   const [shortlist, setShortlist] = useState<ShortlistedCandidate[]>([]);
   const [selectedCandidate, setSelectedCandidate] = useState<ShortlistedCandidate | null>(null);
 
   const handleScout = async (jdText: string) => {
     setIsAnalyzing(true);
+    setError(null);
     try {
       // 1. Analyze JD
       const jdAnalysis = await analyzeJD(jdText);
@@ -50,8 +53,9 @@ export default function App() {
       const sorted = matched.sort((a, b) => b.matchScore.overall - a.matchScore.overall);
       setShortlist(sorted);
       setActiveTab('shortlist');
-    } catch (error) {
-      console.error('Scouting failed:', error);
+    } catch (err: any) {
+      console.error('Scouting failed:', err);
+      setError(err.message || 'The neural link encountered an interruption. Please verify your connection or system credentials.');
     } finally {
       setIsAnalyzing(false);
     }
@@ -110,6 +114,21 @@ export default function App() {
 
         <div className="p-12 max-w-7xl mx-auto relative z-10">
           <AnimatePresence mode="wait">
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="mb-8 p-4 bg-red-500/10 border border-red-500/20 text-red-500 flex items-center gap-3 brutalist-card"
+              >
+                <AlertCircle size={18} />
+                <p className="stats-mono text-xs uppercase tracking-wider">{error}</p>
+                <button onClick={() => setError(null)} className="ml-auto hover:opacity-50">
+                  <span className="stats-mono">CLOSE [X]</span>
+                </button>
+              </motion.div>
+            )}
+
             {activeTab === 'scout' && (
               <motion.div
                 key="scout"
@@ -236,14 +255,11 @@ export default function App() {
             {activeTab === 'analytics' && (
               <motion.div
                 key="analytics"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="flex flex-col items-center justify-center py-40 bg-white/5 brutalist-card border-dashed"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
               >
-                 <div className="text-[200px] font-black opacity-[0.02] absolute">DATA</div>
-                 <Award size={80} className="mb-8 text-brand-primary opacity-20" />
-                 <h3 className="stats-mono text-3xl font-black uppercase">Analytics locked.</h3>
-                 <p className="label-caps mt-4 text-white/40">Insufficient scout history for trend analysis</p>
+                <Insights candidates={shortlist} />
               </motion.div>
             )}
           </AnimatePresence>

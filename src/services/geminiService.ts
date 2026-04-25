@@ -1,11 +1,15 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Candidate, JobDescriptionAnalysis, MatchScore, OutreachSimulation } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const apiKey = process.env.GEMINI_API_KEY;
+if (!apiKey) {
+  console.warn("GEMINI_API_KEY is not defined in the environment. Please ensure it is set in the AI Studio settings.");
+}
+const ai = new GoogleGenAI({ apiKey: apiKey || '' });
 
 export async function analyzeJD(text: string): Promise<JobDescriptionAnalysis> {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-flash-latest",
     contents: `Analyze the following job description and extract key details:
     "${text}"`,
     config: {
@@ -29,7 +33,7 @@ export async function analyzeJD(text: string): Promise<JobDescriptionAnalysis> {
 
 export async function scoreCandidate(candidate: Candidate, jd: JobDescriptionAnalysis): Promise<MatchScore> {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-flash-latest",
     contents: `Evaluate the following candidate against the job description:
     
     Candidate:
@@ -59,7 +63,7 @@ export async function scoreCandidate(candidate: Candidate, jd: JobDescriptionAna
 
 export async function simulateOutreachConvo(candidate: Candidate, jd: JobDescriptionAnalysis): Promise<OutreachSimulation> {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-flash-latest",
     contents: `Simulate a brief 4-6 message conversation between an AI Recruiter and the candidate "${candidate.name}".
     The AI Recruiter is reaching out about the role "${jd.title}".
     The candidate should respond based on their profile: ${candidate.bio}.
