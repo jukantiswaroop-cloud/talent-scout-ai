@@ -26,7 +26,7 @@ export default function JDInput({ onScout, isAnalyzing }: JDInputProps) {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="INPUT JOB DESCRIPTION SPECIFICATIONS..."
-            className="w-full h-80 p-8 bg-transparent resize-none focus:outline-none stats-mono text-white/90 placeholder:text-white/10"
+            className="w-full h-80 pt-8 pb-8 pl-8 pr-52 bg-transparent resize-none focus:outline-none stats-mono text-white/90 placeholder:text-white/10"
           />
           <div className="absolute top-6 right-6 flex flex-col gap-2">
             {sampleJDs.map((sample) => (

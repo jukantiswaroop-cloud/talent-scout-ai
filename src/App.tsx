@@ -12,11 +12,13 @@ import {
   Loader2,
   CheckCircle2,
   AlertCircle,
-  Sparkles
+  Sparkles,
+  Download
 } from 'lucide-react';
 import { MOCK_CANDIDATES } from './data/mockCandidates';
 import { analyzeJD, scoreCandidate, simulateOutreachConvo } from './services/geminiService';
 import { JobDescriptionAnalysis, ShortlistedCandidate } from './types';
+import { exportToCSV } from './utils/export';
 
 // Components
 import Sidebar from './components/Sidebar';
@@ -162,7 +164,17 @@ export default function App() {
                   <div className="col-span-12 lg:col-span-5 space-y-6">
                     <div className="flex items-center justify-between border-b border-white/10 pb-4">
                       <h4 className="label-caps text-white/50">Found Matches [{shortlist.length}]</h4>
-                      <button onClick={() => setActiveTab('scout')} className="label-caps text-[9px] text-brand-primary hover:underline transition-all">New Scout</button>
+                      <div className="flex items-center gap-4">
+                        <button 
+                          onClick={() => exportToCSV(shortlist)} 
+                          className="flex items-center gap-2 label-caps text-[9px] text-white/60 hover:text-brand-primary transition-all group"
+                          title="Export to CSV"
+                        >
+                          <Download size={12} className="opacity-40 group-hover:opacity-100" />
+                          Export CSV
+                        </button>
+                        <button onClick={() => setActiveTab('scout')} className="label-caps text-[9px] text-brand-primary hover:underline transition-all font-black">New Scout</button>
+                      </div>
                     </div>
                     <CandidateList 
                       candidates={shortlist} 

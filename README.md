@@ -7,6 +7,7 @@
 - **JD Intelligence**: Instantly extracts core competencies and preferred experience from raw job descriptions.
 - **Explainable Ranking**: Scores candidates on two primary dimensions: **Technical Fit** and **Cultural Alignment**, providing a natural language "Reasoning" for every match.
 - **Simulated Engagement**: An autonomous agent conducts a simulated conversation with candidates based on their unique career history and goals to determine an **Interest Score**.
+- **Data Export**: Export your shortlisted candidates and AI-generated insights to CSV for integration with existing HR workflows.
 - **Brutalist UI**: A high-performance, responsive interface built for speed and density.
 
 ## 🏗️ Technical Architecture
@@ -35,7 +36,7 @@
 
 ## 🎥 Demo Video
 Watch the full project walkthrough and logic demonstration:
-**[View Demo Video on Google Drive](https://drive.google.com/file/d/14OSyeI5Pop4lL4pXDM-gq5rMCxgfs9hu/view?usp=sharing)**
+**[View Demo Video on Google Drive](https://drive.google.com/file/d/1HEJ2JX3bBA7Rmmkn_Ixx_V2X-Q5n0AGs/view?usp=sharing)**
 
 ## 🌐 Project site URL
 Access the live application here:

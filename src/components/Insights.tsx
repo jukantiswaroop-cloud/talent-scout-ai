@@ -18,9 +18,11 @@ import {
   Globe, 
   Cpu, 
   Activity,
-  ArrowUpRight
+  ArrowUpRight,
+  Download
 } from 'lucide-react';
 import { ShortlistedCandidate } from '../types';
+import { exportToCSV } from '../utils/export';
 
 interface InsightsProps {
   candidates: ShortlistedCandidate[];
@@ -54,11 +56,20 @@ export default function Insights({ candidates }: InsightsProps) {
 
   return (
     <div className="space-y-12">
-      <div className="max-w-2xl border-l-2 border-brand-primary pl-10 py-4">
-        <span className="label-caps text-brand-primary mb-4 block">Market Intelligence</span>
-        <h2 className="text-6xl font-light italic serif tracking-tight leading-tight">
-          Talent <br/>Density & Flow.
-        </h2>
+      <div className="flex items-start justify-between">
+        <div className="max-w-2xl border-l-2 border-brand-primary pl-10 py-4">
+          <span className="label-caps text-brand-primary mb-4 block">Market Intelligence</span>
+          <h2 className="text-6xl font-light italic serif tracking-tight leading-tight">
+            Talent <br/>Density & Flow.
+          </h2>
+        </div>
+        <button 
+          onClick={() => exportToCSV(candidates)} 
+          className="brutalist-button-primary bg-white text-black hover:bg-brand-primary flex items-center gap-2 px-6"
+        >
+          <Download size={16} />
+          <span className="label-caps">Export Dataset</span>
+        </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
