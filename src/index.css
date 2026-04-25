@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Playfair Display", serif;
+  
+  --color-brand-primary: #FACC15; /* Yellow 400 */
+  --color-brand-bg: #0A0A0A;
+  --color-brand-surface: #151515;
+  --color-brand-border: rgba(255, 255, 255, 0.1);
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-brand-bg text-white antialiased;
+  }
+}
+
+.brutalist-card {
+  @apply bg-brand-surface border border-brand-border rounded-none transition-all duration-300;
+}
+
+.brutalist-button-primary {
+  @apply bg-brand-primary text-black px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-white transition-colors cursor-pointer;
+}
+
+.label-caps {
+  @apply text-[10px] uppercase tracking-[0.3em] font-bold;
+}
+
+.stats-mono {
+  @apply font-mono text-lg tracking-tighter;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+

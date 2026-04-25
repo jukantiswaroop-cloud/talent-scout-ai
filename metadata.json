@@ -1,0 +1,6 @@
+{
+  "name": "TalentScout AI",
+  "description": "An AI-powered recruitment agent that analyzes job descriptions, shortlists candidates with explainable scores, and simulates outreach conversations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
