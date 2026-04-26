@@ -38,6 +38,10 @@
 Watch the full project walkthrough and logic demonstration:
 **[View Demo Video on Google Drive](https://drive.google.com/file/d/1HEJ2JX3bBA7Rmmkn_Ixx_V2X-Q5n0AGs/view?usp=sharing)**
 
+## 🏗️ System Architecture & Logic
+For a detailed breakdown of the scoring methodology, data flows, and sample inputs/outputs, please refer to our technical documentation:
+**[System Architecture & Scoring Logic](./ARCHITECTURE.md)**
+
 ## 🌐 Project site URL
 Access the live application here:
 **[TalentScout AI - Live Application](https://ai.studio/apps/7c709731-e015-4569-8677-5cd4a4acb4da?fullscreenApplet=true)**
